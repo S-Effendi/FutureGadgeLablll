@@ -3,7 +3,7 @@ package com.FutureGadgeLablll;
 public class TicketIssued {
 
     private int availableSpaces;
-    Ticket ticket;
+    private Ticket ticket;
 
     public TicketIssued(Ticket ticket) {
         this.ticket = ticket;
@@ -21,13 +21,13 @@ public class TicketIssued {
         }
         else if (ticket.ticketIssued && availableSpaces >= 50) {
             result = availableSpaces--;
-            setAvailableSpaces(result);
         }
         else if (ticket.ticketReturned && availableSpaces != 50) {
                 result = availableSpaces++;
         }
         else{throw new RuntimeException("There are no available parking spaces");
         }
+        setAvailableSpaces(result);
         return availableSpaces;
     }
 }
