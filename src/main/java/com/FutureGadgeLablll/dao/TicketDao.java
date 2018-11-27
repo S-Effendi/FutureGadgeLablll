@@ -1,4 +1,4 @@
-package dao;
+package com.FutureGadgeLablll.dao;
 
 import com.FutureGadgeLablll.Ticket;
 

@@ -51,7 +51,7 @@ public class TicketFee {
         return duration;
     }
 
-    public BigDecimal getTariff() {
+    public  BigDecimal getTariff() {
 
         BigDecimal result;
 

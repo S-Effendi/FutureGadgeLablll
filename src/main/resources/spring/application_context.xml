@@ -15,27 +15,27 @@
         <constructor-arg ref="dataSource"></constructor-arg>
     </bean>
 
-    <!--<bean id ="jdbcParkingDao" class="com.futureGadgeLablll.dao.JdbcParkingDAO">-->
-        <!--<constructor-arg ref="jdbcTemplate"></constructor-arg>-->
-    <!--</bean>-->
+    <bean id ="jdbcParkingDao" class="com.FutureGadgeLablll.dao.JdbcTicketDao">
+        <constructor-arg ref="jdbcTemplate"></constructor-arg>
+    </bean>
 
 
-    <!--<bean id ="parkingService" class="com.futureGadgeLablll.service.Implementaion.ParkingServiceImplementation">-->
-        <!--<constructor-arg ref="jdbcParkingDao"></constructor-arg>-->
-    <!--</bean>-->
+    <bean id ="parkingService" class="com.FutureGadgeLablll.service.Implementation.TicketServiceImplementation">
+        <constructor-arg ref="jdbcParkingDao"></constructor-arg>
+    </bean>
 
 
-    <!--<bean id ="fglRestService" class="com.futureGadgeLablll.rest.FglRestService">-->
-        <!--<constructor-arg ref="parkingService"/>-->
-    <!--</bean>-->
+    <bean id ="fglRestService" class="com.FutureGadgeLablll.rest.FglRestService">
+        <constructor-arg ref="parkingService"/>
+    </bean>
 
-    <!--<bean id="parking" class = "com.futureGadgeLablll.app.Parking">-->
-        <!--<constructor-arg index="0" value="16160"/>-->
-        <!--&lt;!&ndash;<constructor-arg index="1" value="1"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<constructor-arg index="2" value="Thu Nov 22 10:13:18 CAT 2018"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<constructor-arg index="3" value="Thu Nov 22 10:13:18 CAT 2018"/>&ndash;&gt;-->
-        <!--&lt;!&ndash;<constructor-arg index="4" value="10.50"/>&ndash;&gt;-->
-    <!--</bean>-->
+    <bean id="parking" class = "com.FutureGadgeLablll.Ticket">
+        <constructor-arg index="0" value="16160"/>
+        <!--<constructor-arg index="1" value="1"/>-->
+        <!--<constructor-arg index="2" value="Thu Nov 22 10:13:18 CAT 2018"/>-->
+        <!--<constructor-arg index="3" value="Thu Nov 22 10:13:18 CAT 2018"/>-->
+        <!--<constructor-arg index="4" value="10.50"/>-->
+    </bean>
 
     <import resource="classpath:springmvc-resteasy.xml"/>
     <import resource="classpath:/spring/flyway-init.xml"/>
