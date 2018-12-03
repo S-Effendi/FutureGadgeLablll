@@ -8,11 +8,6 @@
 
     <display-name>Restful Web Application</display-name>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/spring/application_context.xml</param-value>
-    </context-param>
-
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
     </listener>
@@ -20,6 +15,11 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring/application_context.xml</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>application</servlet-name>

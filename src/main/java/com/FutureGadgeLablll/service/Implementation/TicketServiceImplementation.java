@@ -12,10 +12,11 @@ import java.util.List;
 public class TicketServiceImplementation implements TicketService {
 
     private JdbcTicketDao jdbcTicketDao;
-
+    private Ticket ticket;
     private TicketFee ticketFee;
 
-    public TicketServiceImplementation() {
+    public TicketServiceImplementation(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public TicketServiceImplementation(JdbcTicketDao jdbcTicketDao) {
@@ -35,13 +36,16 @@ public class TicketServiceImplementation implements TicketService {
     }
 
     @Override
-    public Ticket readTicket(int ticketId) {
-        return this.jdbcTicketDao.readTicket(ticketId);
+    public Ticket readTicket(int ticketId) { return this.jdbcTicketDao.readTicket(ticketId);
     }
 
     @Override
-    public List<Ticket> readAllTickets() {
-        return jdbcTicketDao.readAllTickets();
+    public List<Ticket> readAllTickets() { return jdbcTicketDao.readAllTickets();
+    }
+
+    @Override
+    public int readOccupiedSpaces() {
+        return jdbcTicketDao.readAllTickets().size();
     }
 
     @Override
@@ -55,6 +59,11 @@ public class TicketServiceImplementation implements TicketService {
 
         BigDecimal fee = ticketFee.getTariff();
         Timestamp exitTime = new Timestamp(ticket.getExitTime().getTime());
-        jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, fee);
+        jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
+    }
+
+    public Ticket parkingManager(Ticket ticket){
+        ticket.setAvailableSpaces(ticket.getAvailableSpaces() - readOccupiedSpaces());
+        return ticket;
     }
 }
