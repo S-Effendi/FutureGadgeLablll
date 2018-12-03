@@ -3,10 +3,9 @@ package com.FutureGadgeLablll;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
-
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 
 import static junit.framework.TestCase.assertEquals;
 
@@ -17,22 +16,23 @@ public class TicketFeeTest {
 
     @Before
     public void setUp() throws Exception {
-        ticket = new Ticket();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        ticket = new Ticket(1, true, simpleDateFormat.parse("2010-07-16 19:19:08"), simpleDateFormat.parse("2010-07-16 19:19:08"), BigDecimal.valueOf(10.50));
         ticketFee = new TicketFee(ticket);
     }
 
-    @Ignore
     @Test
-    public void testDuration(){
+    public void testDuration() {
         int result = ticketFee.getDuration();
-        Assert.assertEquals(" ", result);
+        Assert.assertEquals(0, result);
     }
 
     @Test
-    public void testCategoryOneCharge(){
+    public void testCategoryOneCharge() {
 
         BigDecimal result = ticketFee.getTariff();
 
-        assertEquals(result, ticket.getFee()); //50(duration)
+        assertEquals(result, ticket.getFee());
     }
 }
