@@ -36,14 +36,14 @@ public class FglRestService {
     @Path("/ticket/{id}")
     @GET
     @Produces("application/json")
-    public Ticket readTicket(@PathParam("id") int ticketId){
+    public Ticket readTicket(@PathParam("id") int ticketId) {
         return ticketService.readTicket(ticketId);
     }
 
     @Path("/ticket/allTicket")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Ticket> readAllTicket(){
+    public List<Ticket> readAllTickets() {
         return ticketService.readAllTickets();
     }
 

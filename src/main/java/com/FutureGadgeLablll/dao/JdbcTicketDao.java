@@ -23,7 +23,7 @@ public class JdbcTicketDao implements TicketDao {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
-    public JdbcTicketDao (JdbcTemplate jdbcTemplate) {
+    public JdbcTicketDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -42,31 +42,31 @@ public class JdbcTicketDao implements TicketDao {
 
     @Override
     public Ticket createTicket() {
-        this.jdbcTemplate.update("INSERT INTO Ticket(lotId, entryTime) VALUES (1, CURRENT_TIMESTAMP )", new Object[]{});
+        this.jdbcTemplate.update("INSERT INTO Ticket(entryTime, ticketAvailable) VALUES (CURRENT_TIMESTAMP, TRUE )", new Object[]{});
         return new Ticket();
     }
 
     @Override
     public Ticket readTicket(Integer ticketId) {
-        return this.jdbcTemplate.queryForObject("SELECT ticketId, lotId, entryTime, exitTime, fee FROM Ticket WHERE ticketId = ?",
+        return this.jdbcTemplate.queryForObject("SELECT ticketId, entryTime, exitTime, ticketAvailable, fee FROM Ticket WHERE ticketId = ?",
                 new Object[]{ticketId}, new ParkingMapper());
     }
 
     @Override
     public List<Ticket> readAllTickets() {
-        return this.jdbcTemplate.query("SELECT ticketId, lotId, entryTime, exitTime, fee FROM Ticket",
+        return this.jdbcTemplate.query("SELECT ticketId, entryTime, exitTime, ticketAvailable, fee FROM Ticket",
                 new ParkingMapper());
     }
 
     @Override
     public Ticket saveTicket(Ticket ticket) {
-        this.jdbcTemplate.update("INSERT INTO Ticket(ticketId, lotId, entryTime, exitTime, fee) VALUES (?, ?, ?, ?)", new Object[]{});
+        this.jdbcTemplate.update("INSERT INTO Ticket(ticketId, entryTime, exitTime, ticketAvailable, fee) VALUES (?, ?, ?, ?, ?)", new Object[]{});
         return new Ticket();
     }
 
     @Override
-    public Ticket updateTicket(Integer ticketId, Timestamp exitTime, BigDecimal fee) {
-        this.jdbcTemplate.update("UPDATE Ticket SET exitTime = ?, fee = ? WHERE ticketId = ?",exitTime ,fee, ticketId) ;
+    public Ticket updateTicket(Integer ticketId, Timestamp exitTime, Boolean ticketAvailable, BigDecimal fee) {
+        this.jdbcTemplate.update("UPDATE Ticket SET exitTime = ?, ticketAvailable = FALSE, fee = ? WHERE ticketId = ?", exitTime, ticketAvailable, fee, ticketId);
         return new Ticket();
     }
 
@@ -93,6 +93,7 @@ public class JdbcTicketDao implements TicketDao {
             result.setTicketId(resultSet.getInt("ticketId"));
             result.setEntryTime(resultSet.getTimestamp("entryTime"));
             result.setExitTime(resultSet.getTimestamp("exitTime"));
+            result.setTicketAvailable(resultSet.getBoolean("ticketAvailable"));
             result.setFee(resultSet.getBigDecimal("fee"));
 
             return result;

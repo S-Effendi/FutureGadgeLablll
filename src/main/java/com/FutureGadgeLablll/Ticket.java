@@ -8,10 +8,12 @@ public class Ticket {
     private int ticketId;
     private Date entryTime, exitTime;
     private BigDecimal fee;
-    protected Boolean ticketIssued = false, ticketReturned = false;
+    protected Boolean ticketAvailable = true;
+    protected int availableSpaces = 50;
 
     /**
      * Used to establish attributes within a row in the Parking table
+     *
      * @param
      */
 
@@ -22,45 +24,65 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public Ticket(int ticketId, Date entryTime, Date exitTime){
+    public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime) {
         this.ticketId = ticketId;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
     }
 
-    public Ticket(int ticketId, Date entryTime, Date exitTime, BigDecimal fee){
+    public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime, BigDecimal fee) {
         this.ticketId = ticketId;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
         this.fee = fee;
     }
 
-    public void setTicketId(int ticketId){
+    public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
-    public int getTicketId(){
+
+    public int getTicketId() {
         return ticketId;
     }
 
-    public void setEntryTime(Date entryTime){
+    public void setEntryTime(Date entryTime) {
         this.entryTime = entryTime;
     }
-    public Date getEntryTime(){
+
+    public Date getEntryTime() {
         return entryTime;
     }
 
-    public void setExitTime(Date exitTime){
+    public void setExitTime(Date exitTime) {
         this.exitTime = exitTime;
     }
-    public Date getExitTime(){
+
+    public Date getExitTime() {
         return exitTime;
     }
 
-    public void setFee(BigDecimal fee){
+    public void setFee(BigDecimal fee) {
         this.fee = fee;
     }
-    public BigDecimal getFee(){
+
+    public BigDecimal getFee() {
         return fee;
+    }
+
+    public void setTicketAvailable(Boolean ticketAvailable) {
+        this.ticketAvailable = ticketAvailable;
+    }
+
+    public Boolean getTicketAvailable() {
+        return ticketAvailable;
+    }
+
+    public void setAvailableSpaces(int availableSpaces) {
+        this.availableSpaces = availableSpaces;
+    }
+
+    public int getAvailableSpaces() {
+        return availableSpaces;
     }
 
     @Override
