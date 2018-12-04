@@ -6,7 +6,8 @@ import java.util.Date;
 public class Ticket {
 
     private int ticketId;
-    private Date entryTime, exitTime;
+    private Date entryTime;
+    private Date exitTime;
     private BigDecimal fee;
     protected Boolean ticketAvailable = true;
     protected int availableSpaces = 50;
@@ -87,6 +88,6 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return String.format("Parking Details:" + "\nTicket Id: " + ticketId + "\nEntry Time:" + entryTime + "\nExit Time: " + exitTime + "\nFee" + fee);
+        return String.format("Parking Details:" + "\nTicket Id: " + ticketId + "\nEntry Time:" + entryTime + "\nExit Time: " + exitTime + "\nFee:" + fee);
     }
 }

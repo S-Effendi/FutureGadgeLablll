@@ -7,6 +7,8 @@ import com.FutureGadgeLablll.service.TicketService;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Path("/")
@@ -29,8 +31,9 @@ public class TicketRestService {
     @Path("/ticket")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Ticket createTicket() {
-        return ticketService.createTicket();
+    public Ticket createTicket() throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
+        return ticketService.createTicket(1, true, simpleDateFormat.parse("2010-07-16 19:19:08"));
     }
 
     @Path("/ticket/{id}")
