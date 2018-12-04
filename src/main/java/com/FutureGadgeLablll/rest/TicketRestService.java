@@ -10,16 +10,16 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("/")
-public class FglRestService {
+public class TicketRestService {
 
     private TicketService ticketService;
     private JdbcTicketDao jdbcParkingDAO;
 
-    public FglRestService() {
+    public TicketRestService() {
 
     }
 
-    public FglRestService(TicketService ticketService) {
+    public TicketRestService(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 

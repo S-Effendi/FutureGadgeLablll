@@ -25,7 +25,7 @@
     </bean>
 
 
-    <bean id ="fglRestService" class="com.FutureGadgeLablll.rest.FglRestService">
+    <bean id ="fglRestService" class="com.FutureGadgeLablll.rest.TicketRestService">
         <constructor-arg ref="parkingService"/>
     </bean>
 
