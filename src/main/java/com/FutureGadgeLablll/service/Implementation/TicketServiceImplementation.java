@@ -7,6 +7,7 @@ import com.FutureGadgeLablll.service.TicketService;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 public class TicketServiceImplementation implements TicketService {
@@ -31,16 +32,18 @@ public class TicketServiceImplementation implements TicketService {
     }
 
     @Override
-    public Ticket createTicket() {
+    public Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime) {
         return jdbcTicketDao.createTicket();
     }
 
     @Override
-    public Ticket readTicket(int ticketId) { return this.jdbcTicketDao.readTicket(ticketId);
+    public Ticket readTicket(int ticketId) {
+        return this.jdbcTicketDao.readTicket(ticketId);
     }
 
     @Override
-    public List<Ticket> readAllTickets() { return jdbcTicketDao.readAllTickets();
+    public List<Ticket> readAllTickets() {
+        return jdbcTicketDao.readAllTickets();
     }
 
     @Override
@@ -62,7 +65,7 @@ public class TicketServiceImplementation implements TicketService {
         jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
     }
 
-    public Ticket parkingManager(Ticket ticket){
+    public Ticket parkingManager(Ticket ticket) {
         ticket.setAvailableSpaces(ticket.getAvailableSpaces() - readOccupiedSpaces());
         return ticket;
     }

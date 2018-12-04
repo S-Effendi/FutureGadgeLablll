@@ -2,11 +2,12 @@ package com.FutureGadgeLablll.service;
 
 import com.FutureGadgeLablll.Ticket;
 
+import java.util.Date;
 import java.util.List;
 
 public interface TicketService {
 
-    Ticket createTicket();
+    Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime);
 
     Ticket readTicket(int ticketId);
 
