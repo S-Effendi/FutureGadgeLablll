@@ -7,14 +7,13 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
 import static org.mockito.Mockito.when;
 
 public class TicketRestServiceTest {
-
 
 
     private static final int id1 = 1;
@@ -28,13 +27,13 @@ public class TicketRestServiceTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-            when(ticketServiceImplementation.readAllTickets())
-                    .thenReturn(Arrays.asList(new Ticket (1)));
-            ticketRestService = new TicketRestService(ticketServiceImplementation);
+        when(ticketServiceImplementation.readAllTickets())
+                .thenReturn(Arrays.asList(new Ticket(1)));
+        ticketRestService = new TicketRestService(ticketServiceImplementation);
     }
 
     @Test
-    public void returnTicket(){
+    public void returnTicket() {
         List<Ticket> result = ticketRestService.readAllTickets();
         Ticket ticketResult = result.get(0);
 
