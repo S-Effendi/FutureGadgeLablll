@@ -32,9 +32,8 @@ public class JdbcTicketDao implements TicketDao {
     }
 
     @Override
-    public Ticket createTicket() {
-        this.jdbcTemplate.update("INSERT INTO Ticket(entryTime, ticketAvailable) VALUES (CURRENT_TIMESTAMP, TRUE )", new Object[]{});
-        return new Ticket();
+    public void createTicket() {
+        this.jdbcTemplate.update("INSERT INTO Ticket(entryTime) VALUES (CURRENT_TIMESTAMP )", new Object[]{});
     }
 
     @Override

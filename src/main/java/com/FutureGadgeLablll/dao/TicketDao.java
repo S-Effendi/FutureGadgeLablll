@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface TicketDao {
 
-    Ticket createTicket();
+    void createTicket();
 
     Ticket readTicket(Integer ticketId);
 
