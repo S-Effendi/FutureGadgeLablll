@@ -25,11 +25,10 @@ public class Ticket {
         this.ticketId = ticketId;
     }
 
-    public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime) {
+    public Ticket(int ticketId, boolean ticketAvailable, Date entryTime) {
         this.ticketId = ticketId;
         this.ticketAvailable = ticketAvailable;
         this.entryTime = entryTime;
-        this.exitTime = exitTime;
     }
 
     public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime, BigDecimal fee) {
