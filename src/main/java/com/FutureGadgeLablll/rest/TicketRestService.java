@@ -2,7 +2,7 @@ package com.FutureGadgeLablll.rest;
 
 
 import com.FutureGadgeLablll.Ticket;
-import com.FutureGadgeLablll.service.TicketService;
+import com.FutureGadgeLablll.service.TicketManager;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -13,21 +13,21 @@ import java.util.List;
 @Path("/")
 public class TicketRestService {
 
-    private TicketService ticketService;
+    private TicketManager ticketService;
 
     public TicketRestService() {
     }
 
-    public TicketRestService(TicketService ticketService) {
+    public TicketRestService(TicketManager ticketService) {
         this.ticketService = ticketService;
     }
 
     @Path("/ticket")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
-    public Ticket createTicket() throws ParseException {
+    public void createTicket() throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat();
-        return ticketService.createTicket(1, true, simpleDateFormat.parse("2010-07-16 19:19:08"));
+        ticketService.createTicket(simpleDateFormat.parse("2010-07-16 19:19:08"));
     }
 
     @Path("/ticket/{id}")
@@ -57,5 +57,6 @@ public class TicketRestService {
     public void updateParking(Ticket ticket) {
         ticketService.updateTicket(ticket);
     }
+
 
 }

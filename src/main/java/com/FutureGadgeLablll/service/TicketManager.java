@@ -5,19 +5,16 @@ import com.FutureGadgeLablll.Ticket;
 import java.util.Date;
 import java.util.List;
 
-public interface TicketService {
+public interface TicketManager {
 
-    Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime);
+    void createTicket(Date entryTime);
 
     Ticket readTicket(int ticketId);
 
     List<Ticket> readAllTickets();
 
-    int readOccupiedSpaces();
-
     Ticket saveTicket(Ticket ticket);
 
     void updateTicket(Ticket ticket);
 
-    Ticket parkingManager(Ticket ticket);
 }
