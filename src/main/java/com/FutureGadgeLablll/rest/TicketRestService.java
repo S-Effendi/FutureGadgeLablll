@@ -44,14 +44,14 @@ public class TicketRestService {
         return ticketService.readAllTickets();
     }
 
-    @Path("/ticket/saved")
+    @Path("/ticket")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Ticket saveTicket(Ticket ticket) {
         return ticketService.saveTicket(ticket);
     }
 
-    @Path("/ticket/update")
+    @Path("/ticket")
     @PUT
     @Consumes("application/json")
     public void updateParking(Ticket ticket) {

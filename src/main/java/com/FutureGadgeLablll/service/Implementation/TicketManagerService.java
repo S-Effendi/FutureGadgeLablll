@@ -12,7 +12,7 @@ import java.util.List;
 
 public class TicketManagerService implements TicketManager {
 
-    private ParkingManagerService parkingManagerService;
+    public ParkingManagerService parkingManagerService;
 
     private JdbcTicketDao jdbcTicketDao;
     private Ticket ticket;
@@ -24,8 +24,7 @@ public class TicketManagerService implements TicketManager {
 
     @Override
     public void createTicket(Date entryTime) {
-        //parkingManagerService.manageAvailableSpaces(ticket);
-        //ticket.setTicketAvailable(false);
+        parkingManagerService.decreaseAvailableSpaces();
         this.jdbcTicketDao.createTicket();
     }
 
@@ -53,5 +52,7 @@ public class TicketManagerService implements TicketManager {
         jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
 
         ticket.setTicketAvailable(true);
+        parkingManagerService.increaseAvailableSpaces();
+
     }
 }
