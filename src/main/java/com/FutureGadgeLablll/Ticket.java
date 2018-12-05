@@ -27,12 +27,14 @@ public class Ticket {
 
     public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime) {
         this.ticketId = ticketId;
+        this.ticketAvailable = ticketAvailable;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
     }
 
     public Ticket(int ticketId, boolean ticketAvailable, Date entryTime, Date exitTime, BigDecimal fee) {
         this.ticketId = ticketId;
+        this.ticketAvailable = ticketAvailable;
         this.entryTime = entryTime;
         this.exitTime = exitTime;
         this.fee = fee;

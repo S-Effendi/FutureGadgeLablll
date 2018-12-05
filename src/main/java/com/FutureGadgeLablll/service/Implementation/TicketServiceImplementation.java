@@ -47,7 +47,6 @@ public class TicketServiceImplementation implements TicketService {
         return jdbcTicketDao.readAllTickets();
     }
 
-
     @Override
     public int readOccupiedSpaces() {
         return jdbcTicketDao.readUnavailableTickets().size();
