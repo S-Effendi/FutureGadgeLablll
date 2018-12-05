@@ -2,7 +2,6 @@ package com.FutureGadgeLablll.rest;
 
 
 import com.FutureGadgeLablll.Ticket;
-import com.FutureGadgeLablll.dao.JdbcTicketDao;
 import com.FutureGadgeLablll.service.TicketService;
 
 import javax.ws.rs.*;
@@ -15,17 +14,12 @@ import java.util.List;
 public class TicketRestService {
 
     private TicketService ticketService;
-    private JdbcTicketDao jdbcParkingDAO;
 
     public TicketRestService() {
-
     }
 
     public TicketRestService(TicketService ticketService) {
         this.ticketService = ticketService;
-    }
-
-    public void setParkingService(String parkingService) {
     }
 
     @Path("/ticket")

@@ -14,7 +14,6 @@ public class TicketServiceImplementation implements TicketService {
 
     private JdbcTicketDao jdbcTicketDao;
     private Ticket ticket;
-    private TicketFee ticketFee;
 
     public TicketServiceImplementation(Ticket ticket) {
         this.ticket = ticket;
@@ -24,16 +23,9 @@ public class TicketServiceImplementation implements TicketService {
         this.jdbcTicketDao = jdbcTicketDao;
     }
 
-    public void setJdbcTicketDao(JdbcTicketDao jdbcTicketDao) {
-    }
-
-    public void setTicketFee(TicketFee parkingFee) {
-        this.ticketFee = parkingFee;
-    }
-
     @Override
     public Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime) {
-        ticket.setTicketAvailable(false);
+        //ticket.setTicketAvailable(false);
         return jdbcTicketDao.createTicket();
     }
 
@@ -59,7 +51,7 @@ public class TicketServiceImplementation implements TicketService {
 
     @Override
     public void updateTicket(Ticket ticket) {
-        ticketFee = new TicketFee(ticket);
+        TicketFee ticketFee = new TicketFee(ticket);
 
         BigDecimal fee = ticketFee.getTariff();
         Timestamp exitTime = new Timestamp(ticket.getExitTime().getTime());
