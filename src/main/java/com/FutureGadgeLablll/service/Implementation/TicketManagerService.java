@@ -3,30 +3,30 @@ package com.FutureGadgeLablll.service.Implementation;
 import com.FutureGadgeLablll.Ticket;
 import com.FutureGadgeLablll.TicketFee;
 import com.FutureGadgeLablll.dao.JdbcTicketDao;
-import com.FutureGadgeLablll.service.TicketService;
+import com.FutureGadgeLablll.service.TicketManager;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
-public class TicketServiceImplementation implements TicketService {
+public class TicketManagerService implements TicketManager {
+
+    private ParkingManagerService parkingManagerService;
 
     private JdbcTicketDao jdbcTicketDao;
     private Ticket ticket;
 
-    public TicketServiceImplementation(Ticket ticket) {
-        this.ticket = ticket;
-    }
-
-    public TicketServiceImplementation(JdbcTicketDao jdbcTicketDao) {
+    public TicketManagerService(JdbcTicketDao jdbcTicketDao, ParkingManagerService parkingManagerService) {
         this.jdbcTicketDao = jdbcTicketDao;
+        this.parkingManagerService = parkingManagerService;
     }
 
     @Override
-    public Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime) {
+    public void createTicket(Date entryTime) {
+        //parkingManagerService.manageAvailableSpaces(ticket);
         //ticket.setTicketAvailable(false);
-        return jdbcTicketDao.createTicket();
+        this.jdbcTicketDao.createTicket();
     }
 
     @Override
@@ -37,11 +37,6 @@ public class TicketServiceImplementation implements TicketService {
     @Override
     public List<Ticket> readAllTickets() {
         return jdbcTicketDao.readAllTickets();
-    }
-
-    @Override
-    public int readOccupiedSpaces() {
-        return jdbcTicketDao.readUnavailableTickets().size();
     }
 
     @Override
@@ -58,10 +53,5 @@ public class TicketServiceImplementation implements TicketService {
         jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
 
         ticket.setTicketAvailable(true);
-    }
-
-    public Ticket parkingManager(Ticket ticket) {
-        ticket.setAvailableSpaces(ticket.getAvailableSpaces() - readOccupiedSpaces());
-        return ticket;
     }
 }

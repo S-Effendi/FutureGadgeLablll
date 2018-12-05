@@ -1,7 +1,7 @@
 package com.FutureGadgeLablll.rest;
 
 import com.FutureGadgeLablll.Ticket;
-import com.FutureGadgeLablll.service.Implementation.TicketServiceImplementation;
+import com.FutureGadgeLablll.service.Implementation.TicketManagerService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -19,7 +19,7 @@ public class TicketRestServiceTest {
     private static final int id1 = 1;
 
     @Mock
-    private TicketServiceImplementation ticketServiceImplementation;
+    private TicketManagerService ticketServiceImplementation;
 
     private TicketRestService ticketRestService;
 
