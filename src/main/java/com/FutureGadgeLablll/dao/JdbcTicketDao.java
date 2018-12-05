@@ -20,7 +20,6 @@ import java.util.List;
 
 public class JdbcTicketDao implements TicketDao {
 
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
     public JdbcTicketDao(JdbcTemplate jdbcTemplate) {
