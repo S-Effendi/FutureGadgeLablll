@@ -3,7 +3,6 @@ package com.FutureGadgeLablll.service.Implementation;
 import com.FutureGadgeLablll.Ticket;
 import com.FutureGadgeLablll.TicketFee;
 import com.FutureGadgeLablll.dao.JdbcTicketDao;
-import com.FutureGadgeLablll.service.ParkingManager;
 import com.FutureGadgeLablll.service.TicketManager;
 
 import java.math.BigDecimal;
@@ -50,11 +49,10 @@ public class TicketManagerService implements TicketManager {
 
         BigDecimal fee = ticketFee.getTariff();
         Timestamp exitTime = new Timestamp(ticket.getExitTime().getTime());
-        jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
+        jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketIssued(), fee);
 
-        ticket.setTicketAvailable(true);
         parkingManagerService.increaseAvailableSpaces();
-
+        ticket.setTicketIssued(true);
     }
 
 //    public static class ParkingManager {

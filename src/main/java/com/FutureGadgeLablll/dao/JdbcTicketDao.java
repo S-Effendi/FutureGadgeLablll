@@ -89,7 +89,7 @@ public class JdbcTicketDao implements TicketDao {
             result.setTicketId(resultSet.getInt("ticketId"));
             result.setEntryTime(resultSet.getTimestamp("entryTime"));
             result.setExitTime(resultSet.getTimestamp("exitTime"));
-            result.setTicketAvailable(resultSet.getBoolean("ticketAvailable"));
+            result.setTicketIssued(resultSet.getBoolean("ticketAvailable"));
             result.setFee(resultSet.getBigDecimal("fee"));
 
             return result;

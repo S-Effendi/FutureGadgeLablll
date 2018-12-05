@@ -1,15 +1,18 @@
 package com.FutureGadgeLablll;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@JsonIgnoreProperties({"availableSpaces"})
 public class Ticket {
 
     private int ticketId;
     private Date entryTime;
     private Date exitTime;
     private BigDecimal fee;
-    protected Boolean ticketAvailable = true;
+    protected Boolean ticketAvailable;
     protected int availableSpaces = 50;
 
     /**
@@ -71,20 +74,12 @@ public class Ticket {
         return fee;
     }
 
-    public void setTicketAvailable(Boolean ticketAvailable) {
+    public void setTicketIssued(Boolean ticketAvailable) {
         this.ticketAvailable = ticketAvailable;
     }
 
-    public Boolean getTicketAvailable() {
+    public Boolean getTicketIssued() {
         return ticketAvailable;
-    }
-
-    public void setAvailableSpaces(int availableSpaces) {
-        this.availableSpaces = availableSpaces;
-    }
-
-    public int getAvailableSpaces() {
-        return availableSpaces;
     }
 
     @Override
