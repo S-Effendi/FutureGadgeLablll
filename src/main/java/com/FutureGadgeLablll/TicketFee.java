@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TicketFee {
-    private int ticketId, duration;
+    private int duration;
 
     Ticket ticket;
     Map<Integer, BigDecimal> tariffCategory = new HashMap<>();
@@ -21,14 +21,6 @@ public class TicketFee {
         tariffCategory.put(3, BigDecimal.valueOf(30));
         tariffCategory.put(4, BigDecimal.valueOf(50));
         tariffCategory.put(5, BigDecimal.valueOf(100));
-    }
-
-    public boolean getTicketId() {
-
-        if (ticketId == ticket.getTicketId()) {
-            return true;
-        }
-        return false;
     }
 
     public int getDuration() {
