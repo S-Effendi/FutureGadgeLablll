@@ -33,6 +33,7 @@ public class TicketServiceImplementation implements TicketService {
 
     @Override
     public Ticket createTicket(int ticketId, boolean availableTicket, Date entryTime) {
+        ticket.setTicketAvailable(false);
         return jdbcTicketDao.createTicket();
     }
 
@@ -46,9 +47,10 @@ public class TicketServiceImplementation implements TicketService {
         return jdbcTicketDao.readAllTickets();
     }
 
+
     @Override
     public int readOccupiedSpaces() {
-        return jdbcTicketDao.readAllTickets().size();
+        return jdbcTicketDao.readUnavailableTickets().size();
     }
 
     @Override
@@ -63,6 +65,8 @@ public class TicketServiceImplementation implements TicketService {
         BigDecimal fee = ticketFee.getTariff();
         Timestamp exitTime = new Timestamp(ticket.getExitTime().getTime());
         jdbcTicketDao.updateTicket(ticket.getTicketId(), exitTime, ticket.getTicketAvailable(), fee);
+
+        ticket.setTicketAvailable(true);
     }
 
     public Ticket parkingManager(Ticket ticket) {

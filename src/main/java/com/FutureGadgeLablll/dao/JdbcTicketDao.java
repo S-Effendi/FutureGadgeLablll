@@ -51,6 +51,12 @@ public class JdbcTicketDao implements TicketDao {
     }
 
     @Override
+    public List<Ticket> readUnavailableTickets() {
+        return this.jdbcTemplate.query("SELECT ticketId, entryTime, exitTime, ticketAvailable, fee FROM Ticket WHERE ticketAvailable = FALSE",
+                new ParkingMapper());
+    }
+
+    @Override
     public Ticket saveTicket(Ticket ticket) {
         this.jdbcTemplate.update("INSERT INTO Ticket(ticketId, entryTime, exitTime, ticketAvailable, fee) VALUES (?, ?, ?, ?, ?)", new Object[]{});
         return new Ticket();

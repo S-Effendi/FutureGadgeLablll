@@ -11,17 +11,19 @@ import java.util.List;
 
 public interface TicketDao {
 
-    public Ticket createTicket();
+    Ticket createTicket();
 
-    public Ticket readTicket(Integer ticketId);
+    Ticket readTicket(Integer ticketId);
 
-    public List<Ticket> readAllTickets();
+    List<Ticket> readAllTickets();
 
-    public Ticket saveTicket(Ticket ticket);
+    List<Ticket> readUnavailableTickets();
 
-    public Ticket updateTicket(Integer ticketId, Timestamp exitTime, Boolean ticketAvailable, BigDecimal fee);
+    Ticket saveTicket(Ticket ticket);
 
-    public int deleteTicket(Integer ticketId);
+    Ticket updateTicket(Integer ticketId, Timestamp exitTime, Boolean ticketAvailable, BigDecimal fee);
 
-    public void deleteAllTicket();
+    int deleteTicket(Integer ticketId);
+
+    void deleteAllTicket();
 }
