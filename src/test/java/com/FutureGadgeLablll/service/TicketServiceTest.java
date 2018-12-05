@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -30,8 +31,22 @@ public class TicketServiceTest {
     }
 
     @Test
-    public void testTicketIdConstruction(){
+    public void testTicketConstructionOfId() {
 
         Assert.assertEquals(1, ticketManagerService.readTicket(1).getTicketId());
+    }
+
+    @Test
+    public void testTicketConstructionOfFee() {
+
+        Assert.assertEquals(BigDecimal.valueOf(10.50), ticketManagerService.readTicket(1).getFee().setScale(1));
+    }
+
+    @Test
+    public void testTicketConstructionOfEntryTime() throws ParseException {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        Assert.assertEquals(simpleDateFormat.parse("2010-07-16 19:19:08"), ticketManagerService.readTicket(1).getEntryTime());
     }
 }
