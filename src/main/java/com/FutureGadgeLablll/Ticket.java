@@ -5,7 +5,7 @@ import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@JsonIgnoreProperties({"ticketAvailable", "availableSpaces"})
+@JsonIgnoreProperties({"ticketIssued", "availableSpaces"})
 public class Ticket {
 
     private int ticketId;
