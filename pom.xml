@@ -126,7 +126,6 @@
     <packaging>war</packaging>
 
     <build>
-        <!--<pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
         <plugins>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
@@ -166,6 +165,43 @@
                     <path>/</path>
                 </configuration>
             </plugin>
+            <!-- codeAnalysis-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>LATEST</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>codeAnalysis/checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>3.6</version>
+                <configuration>
+                    <rulesets>
+                        <ruleset>codeAnalysis/pmd/basicExcludingDeprecated.xml</ruleset>
+                        <ruleset>codeAnalysis/pmd/excludeUnnecessaryParenthesis.xml</ruleset>
+                    </rulesets>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.4</version>
+                <configuration>
+                    <excludeFilterFile>codeAnalysis/findBugsExclusions.xml</excludeFilterFile>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+            <!--flyway-->
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
@@ -177,6 +213,5 @@
                 </configuration>
             </plugin>
         </plugins>
-        <!--</pluginManagement>-->
     </build>
 </project>
