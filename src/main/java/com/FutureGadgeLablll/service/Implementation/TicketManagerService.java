@@ -54,29 +54,4 @@ public class TicketManagerService implements TicketManager {
         parkingManagerService.increaseAvailableSpaces();
         ticket.setTicketIssued(true);
     }
-
-//    public static class ParkingManager {
-//        public class ParkingManagerService implements com.FutureGadgeLablll.service.ParkingManager {
-//
-//            private JdbcTicketDao jdbcTicketDao;
-//
-//            protected int availableSpaces = 50;
-//
-//            @Override
-//            public int readOccupiedSpaces() {
-//                return jdbcTicketDao.readUnavailableTickets().size();
-//            }
-//
-//            @Override
-//            public void decreaseAvailableSpaces() {
-//                availableSpaces--;
-//            }
-//
-//            @Override
-//            public void increaseAvailableSpaces() {
-//                availableSpaces++;
-//            }
-//
-//        }
-//    }
 }
