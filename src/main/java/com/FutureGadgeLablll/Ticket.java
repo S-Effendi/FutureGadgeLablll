@@ -9,7 +9,7 @@ import java.util.Date;
  *
  */
 
-@JsonIgnoreProperties( {"ticketIssued", "availableSpaces",
+@JsonIgnoreProperties({"ticketIssued", "availableSpaces",
         "entryTime", "exitTime"})
 
 public class Ticket {
