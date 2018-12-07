@@ -120,6 +120,10 @@ public class Ticket {
      */
 
     public String getEntryDateTime() {
+        if (entryTime == null) {
+            return "";
+        }
+
         return entryTime.toString();
     }
 
@@ -141,6 +145,9 @@ public class Ticket {
      * @return get exit date and time
      */
     public String getExitDateTime() {
+        if (exitTime == null) {
+            return "";
+        }
         return exitTime.toString();
     }
 

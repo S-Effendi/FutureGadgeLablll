@@ -90,12 +90,4 @@ public class TicketRestService {
     public void updateParking(final Ticket ticket) {
         ticketService.updateTicket(ticket);
     }
-
-    /**
-     * WORK FLOW
-     * POST /ticket -> createTicket()
-     * GET /ticket/allTicket
-     * PUT /ticket -> Add endTime
-     * GET /ticket/{id} -> contains the fee
-     */
 }
