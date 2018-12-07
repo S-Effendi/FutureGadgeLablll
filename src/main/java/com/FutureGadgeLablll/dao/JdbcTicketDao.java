@@ -113,8 +113,8 @@ public class JdbcTicketDao implements TicketDao {
                                final BigDecimal fee) {
 
         this.jdbcTemplate.update("UPDATE Ticket SET exitTime = ?, "
-                        + "ticketAvailable = FALSE, fee = ? WHERE ticketId = ?",
-                exitTime, ticketAvailable, fee, ticketId);
+                        + "ticketAvailable = TRUE, fee = ? WHERE ticketId = ?",
+                exitTime, fee, ticketId);
         return new Ticket(ticketId, ticketAvailable, null, exitTime, fee);
     }
 

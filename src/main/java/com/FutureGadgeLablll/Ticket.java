@@ -3,6 +3,8 @@ package com.FutureGadgeLablll;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -36,7 +38,7 @@ public class Ticket {
     /**
      * ticketAvailable.
      */
-    private Boolean ticketAvailable;
+    private Boolean ticketAvailable = false;
     /**
      * availableSpaces.
      */
@@ -116,6 +118,23 @@ public class Ticket {
     }
 
     /**
+     *
+     * @param entryDateTime set entry date and time
+     */
+
+    public void setEntryDateTime(final String entryDateTime) {
+
+        SimpleDateFormat simpleDateFormat =
+            new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        try {
+            entryTime = simpleDateFormat.parse(entryDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            entryTime = null;
+        }
+    }
+
+    /**
      * @return get entry date and time
      */
 
@@ -149,6 +168,21 @@ public class Ticket {
             return "";
         }
         return exitTime.toString();
+    }
+
+    /**
+     *
+     * @param exitDateTime set exit date and time
+     */
+    public void setExitDateTime(final String exitDateTime) {
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        try {
+            exitTime = simpleDateFormat.parse(exitDateTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            exitTime = null;
+        }
     }
 
     /**
