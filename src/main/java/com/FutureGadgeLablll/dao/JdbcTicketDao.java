@@ -62,8 +62,8 @@ public class JdbcTicketDao implements TicketDao {
     @Override
     public Ticket readTicket(final Integer ticketId) {
         return this.jdbcTemplate.queryForObject("SELECT ticketId, "
-                        + "entryTime, exitTime, ticketAvailable, fee FROM Ticket "
-                        + "WHERE ticketId = ?",
+                + "entryTime, exitTime, ticketAvailable, fee FROM Ticket "
+                + "WHERE ticketId = ?",
                 new Object[] {ticketId}, new ParkingMapper());
     }
 
@@ -95,7 +95,7 @@ public class JdbcTicketDao implements TicketDao {
     @Override
     public Ticket saveTicket(final Ticket ticket) {
         this.jdbcTemplate.update("INSERT INTO Ticket(ticketId, entryTime,"
-                        + " exitTime, ticketAvailable, fee) VALUES (?, ?, ?, ?, ?)",
+                + " exitTime, ticketAvailable, fee) VALUES (?, ?, ?, ?, ?)",
                 new Object[] {});
         return new Ticket();
     }
