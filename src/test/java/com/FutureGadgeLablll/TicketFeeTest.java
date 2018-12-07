@@ -33,7 +33,6 @@ public class TicketFeeTest {
     public void testCategoryOneCharge() {
 
         BigDecimal result = ticketFee.getTariff();
-
         assertEquals(result, ticket.getFee());
     }
 }
