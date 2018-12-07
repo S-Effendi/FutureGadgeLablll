@@ -26,16 +26,17 @@ public class TicketManagerService implements TicketManager {
      * Ticket.
      */
     private Ticket ticket;
+
     /**
-     *
-     * @param jdbcTicketDaoInstance the jdbcTicket Dao
+     * @param jdbcTicketDaoInstance         the jdbcTicket Dao
      * @param parkingManagerServiceInstance the parkingManagerService
      */
     public TicketManagerService(final JdbcTicketDao jdbcTicketDaoInstance,
-                final ParkingManagerService parkingManagerServiceInstance) {
+        final ParkingManagerService parkingManagerServiceInstance) {
         this.jdbcTicketDao = jdbcTicketDaoInstance;
         this.parkingManagerService = parkingManagerServiceInstance;
     }
+
     /**
      * @param entryTime create ticket as soon as an entry date is issued.
      */
@@ -44,14 +45,17 @@ public class TicketManagerService implements TicketManager {
         parkingManagerService.decreaseAvailableSpaces();
         this.jdbcTicketDao.createTicket();
     }
+
     /**
      * * @param ticketId read by ticket id
+     *
      * @return ticket
      */
     @Override
     public Ticket readTicket(final int ticketId) {
         return this.jdbcTicketDao.readTicket(ticketId);
     }
+
     /**
      * @return read all by ticket id
      */
@@ -59,6 +63,7 @@ public class TicketManagerService implements TicketManager {
     public List<Ticket> readAllTickets() {
         return jdbcTicketDao.readAllTickets();
     }
+
     /**
      * @param tickets save ticket by id
      * @return ticket
@@ -67,6 +72,7 @@ public class TicketManagerService implements TicketManager {
     public Ticket saveTicket(final Ticket tickets) {
         return jdbcTicketDao.saveTicket(tickets);
     }
+
     /**
      * @param tickets update ticket
      */
@@ -78,7 +84,7 @@ public class TicketManagerService implements TicketManager {
         Timestamp exitTime = new Timestamp(tickets.getExitTime().getTime());
         tickets.setTicketIssued(true);
         jdbcTicketDao.updateTicket(tickets.getTicketId(), exitTime,
-            tickets.getTicketIssued(), fee);
+                tickets.getTicketIssued(), fee);
         parkingManagerService.increaseAvailableSpaces();
     }
 }

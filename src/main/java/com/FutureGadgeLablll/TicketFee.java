@@ -4,36 +4,104 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public class TicketFee {
+    /**
+     * Lost Ticket.
+     */
+    private static final int LOST_TICKET = 5;
+    /**
+     * Twenty-rand.
+     */
+    public static final int TWENTY = 20;
+    /**
+     * Thirty minutes.
+     */
+    public static final int THIRTY_MINUTES = 30;
+    /**
+     * Thirty-rand.
+     */
+    public static final int THIRTY = 30;
+    /**
+     * Fifty-rand.
+     */
+    public static final int FIFTY = 50;
+    /**
+     * One_Hundred-rand.
+     */
+    public static final int ONE_HUNDRED = 100;
+    /**
+     * Sixty minutes.
+     */
+    public static final int SIXTY_MINUTES = 60;
+    /**
+     * Two Hours.
+     */
+    public static final int TWO_HOURS = 120;
+    /**
+     * Four Hours.
+     */
+    public static final int FOUR_HOURS = 240;
+    /**
+     * Level 3.
+     */
+    public static final int LEVEL3 = 3;
+    /**
+     * Level 4.
+     */
+    public static final int LEVEL4 = 4;
+    /**
+     * Duration.
+     */
     private int duration;
 
-    Ticket ticket;
-    Map<Integer, BigDecimal> tariffCategory = new HashMap<>();
+    /**
+     * Ticket.
+     */
+    private Ticket ticket;
+    /**
+     * Tariff Category.
+     */
+    private Map<Integer, BigDecimal> tariffCategory = new HashMap<>();
 
-    public TicketFee(Ticket ticket) {
+    /**
+     * Ticket.
+     *
+     * @param tickets utilized ticket.
+     */
+    public TicketFee(final Ticket tickets) {
         this();
-        this.ticket = ticket;
+        this.ticket = tickets;
     }
 
+    /**
+     * TicketFee.
+     */
     public TicketFee() {
         tariffCategory.put(1, BigDecimal.TEN);
-        tariffCategory.put(2, BigDecimal.valueOf(20));
-        tariffCategory.put(3, BigDecimal.valueOf(30));
-        tariffCategory.put(4, BigDecimal.valueOf(50));
-        tariffCategory.put(5, BigDecimal.valueOf(100));
+        tariffCategory.put(2, BigDecimal.valueOf(TWENTY));
+        tariffCategory.put(LEVEL3, BigDecimal.valueOf(THIRTY));
+        tariffCategory.put(LEVEL4, BigDecimal.valueOf(FIFTY));
+        tariffCategory.put(LOST_TICKET, BigDecimal.valueOf(ONE_HUNDRED));
     }
 
+    /**
+     * Duration.
+     *
+     * @return duration.
+     */
     public int getDuration() {
-
-        if (ticket.ticketAvailable) {
+        if (ticket.getTicketIssued()) {
 
             int entryTimeHour = ticket.getEntryTime().getHours();
             int entryTimeMinutes = ticket.getEntryTime().getMinutes();
             int exitTimeHour = ticket.getExitTime().getHours();
             int exitTimeMinutes = ticket.getExitTime().getMinutes();
 
-            entryTimeHour = entryTimeHour * 60;
-            exitTimeHour = exitTimeHour * 60;
+            entryTimeHour = entryTimeHour * SIXTY_MINUTES;
+            exitTimeHour = exitTimeHour * SIXTY_MINUTES;
 
             int entryTime = entryTimeHour + entryTimeMinutes;
             int exitTime = exitTimeHour + exitTimeMinutes;
@@ -43,20 +111,27 @@ public class TicketFee {
         return duration;
     }
 
+    /**
+     * Tariff.
+     *
+     * @return tariff.
+     */
     public BigDecimal getTariff() {
-
         BigDecimal result;
 
-        if (getDuration() <= 30 && getDuration() >= 0) {
+        if (getDuration() <= THIRTY_MINUTES && getDuration() >= 0) {
             result = tariffCategory.get(1);
-        } else if (getDuration() <= 60 && getDuration() > 30) {
+        } else if (getDuration() <= SIXTY_MINUTES
+                && getDuration() > THIRTY_MINUTES) {
             result = tariffCategory.get(2);
-        } else if (getDuration() <= 120 && getDuration() > 60) {
-            result = tariffCategory.get(3);
-        } else if (getDuration() <= 240 && getDuration() > 120) {
-            result = tariffCategory.get(4);
+        } else if (getDuration() <= TWO_HOURS
+                && getDuration() > SIXTY_MINUTES) {
+            result = tariffCategory.get(LEVEL3);
+        } else if (getDuration() <= FOUR_HOURS
+                && getDuration() > TWO_HOURS) {
+            result = tariffCategory.get(LEVEL4);
         } else {
-            result = tariffCategory.get(5);
+            result = tariffCategory.get(LOST_TICKET);
         }
         ticket.setFee(result);
         return result;

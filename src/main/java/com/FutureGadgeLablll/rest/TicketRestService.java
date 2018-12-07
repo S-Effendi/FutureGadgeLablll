@@ -16,23 +16,23 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-    /**
-     *
-     */
+/**
+ *
+ */
 @Path("/")
 public class TicketRestService {
     /**
-     *
+     * Ticket Service.
      */
     private TicketManager ticketService;
+
     /**
-     *
+     * Empty Ticket Rest Service Constructor.
      */
     public TicketRestService() {
     }
 
     /**
-     *
      * @param ticketServices processes a ticket service
      */
     public TicketRestService(final TicketManager ticketServices) {
@@ -40,7 +40,6 @@ public class TicketRestService {
     }
 
     /**
-     *
      * @throws ParseException E
      */
     @Path("/ticket")
@@ -51,7 +50,6 @@ public class TicketRestService {
     }
 
     /**
-     *
      * @param ticketId return ticket by id
      * @return ticket
      */
@@ -63,7 +61,6 @@ public class TicketRestService {
     }
 
     /**
-     *
      * @return tickets
      */
     @Path("/ticket")
@@ -74,7 +71,6 @@ public class TicketRestService {
     }
 
     /**
-     *
      * @param ticket store ticket data
      * @return ticket
      */
@@ -86,7 +82,6 @@ public class TicketRestService {
     }
 
     /**
-     *
      * @param ticket updated ticket
      */
     @Path("/ticket")
