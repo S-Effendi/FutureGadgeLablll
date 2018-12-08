@@ -3,7 +3,7 @@
 This project represents an application which gives the user functionality to operate a parking lot system.
 FutureGadgeLab is a maven based project which makes use of HSQL, Spring, Flyway, Mockito, Tomcat and CSG Checkstyles.
 
-## Introductry Instructions
+## Introductory Instructions
 PHASE 1:
 1. Download IntelliJ (this IDE was made use of within this project), or download preferred IDE of your choice.
 2. Use a CLI of your choice then execute, Git Clone: ```https://github.com/S-Effendi/FutureGadgeLablll.git```
